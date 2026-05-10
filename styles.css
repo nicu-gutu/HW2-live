@@ -32,7 +32,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- Skip Link (Original) --- */
 .skip-link {
   position: absolute;
   display: inline-block;
