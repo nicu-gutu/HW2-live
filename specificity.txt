@@ -1,0 +1,37 @@
+1. Analiza paragrafelor si sursa proprietatilor
+
+Paragraful A
+Primeste proprietatile: color, font-size, font-family, line-height, padding.
+Sursa: Selector de element (p).
+
+Paragraful B
+Primeste proprietatile de la 'p' (line-height) si '.info' (color, font-size, background-color, padding, border-left, font-family).
+Sursa: Selector de clasa (.info) care suprascrie selectorul de element.
+
+Paragraful C
+Primeste proprietatile de la 'p' (line-height) si '#warning' (color, font-size, font-style, text-transform, letter-spacing, border, padding, background-color, font-family).
+Sursa: Selector de ID (#warning) care suprascrie selectorul de element.
+
+Paragraful D
+Primeste un mix de proprietati de la toti cei patru selectori (p, .info, #warning, #warning.info).
+Sursa: Selectorul combinat (#warning.info) are cea mai mare prioritate pentru conflictele directe.
+
+2. Conflictul de culori si font-family pentru Paragraful D
+
+Culoarea:
+Browser-ul foloseste valoarea 'darkorange'.
+De ce: Selectorul '#warning.info' are cea mai mare specificitate (un ID + o clasa). Aceasta combinatie "bate" un simplu ID (#warning), o clasa (.info) sau un element (p).
+
+Font-family:
+Regula care castiga este cea din '#warning' ('Courier New', monospace).
+De ce: Desi '#warning.info' este cel mai specific selector care se aplica paragrafului D, acesta NU defineste o proprietate font-family. Prin urmare, browser-ul cauta urmatorul cel mai specific selector care are aceasta proprietate definita, acesta fiind ID-ul '#warning'.
+
+3. Testul cu h1 (Extern vs Intern):
+
+Rezultat:
+Titlul 'title1' va avea culoarea 'crimson' (definita intern), dar va pastra 'font-style: italic' si 'padding: 10px' (definite extern).
+
+Explicatie:
+Ambii selectori sunt de tip element (h1), deci au aceeasi specificitate.
+In CSS, cand specificitatea este egala, ultima regula citita de browser castiga (regula "cascadelor").
+Deoarece tag-ul <style> (CSS intern) este plasat in document DUPA tag-ul <link> (CSS extern), culoarea crimson o suprascrie pe cea din fisierul style.css. Proprietatile care nu intra in conflict (padding, font-style) raman active din fisierul extern.
